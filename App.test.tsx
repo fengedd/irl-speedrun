@@ -1,6 +1,5 @@
 import * as React from 'react';
 import App from './App';
-
 import * as renderer from 'react-test-renderer';
 import TimerStore from './data/TimerStore';
 import TimerStoreState from './data/TimerStoreState';
@@ -8,25 +7,10 @@ import { ComparisonView } from './misc/ViewTypes';
 import TimerActionTypes from './data/TimerActionTypes';
 import Timer from './data/Timer';
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-      setItem: jest.fn(() => {
-          return new Promise((resolve, reject) => {
-              resolve(null);
-          });
-      }),
-      getItem: jest.fn(() => {
-          return new Promise((resolve, reject) => {
-              resolve(null);
-          });
-      })
-    }
-  }));
-/*
 it('renders without crashing', () => {
   const rendered = renderer.create(<App />).toJSON();
   expect(rendered).toBeTruthy();
-});*/
+});
 
 describe('TimerStore', () => {
   let state: TimerStoreState;
