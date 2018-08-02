@@ -13,7 +13,7 @@
 .env.production.local
 .babelrc
 .watchmanconfig
-*.json
+ *.json
 yarn.lock
 npm-debug.log*
 yarn-debug.log*
