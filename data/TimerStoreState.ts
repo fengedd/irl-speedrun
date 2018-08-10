@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import {ComparisonView} from '../misc/ViewTypes';
 import Timer from './Timer';
 export default class TimerStoreState {

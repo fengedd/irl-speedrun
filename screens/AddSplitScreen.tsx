@@ -33,6 +33,7 @@ export default class AddSplitScreen extends React.Component<any, any> {
             Alert.alert('This name is too short.');
           } else {
             TimerActions.timerAdd(id, expectedTime);
+            TimerActions.totalComparisonTimeSet();
             navigation.goBack();
           }
         }}>

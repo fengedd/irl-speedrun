@@ -4,7 +4,16 @@ import TotalTimerStore from '../data/TotalTimerStore';
 import TotalTimerActions from '../data/TotalTimerActions';
 import { Container } from 'flux/utils';
 
-class TotalTimerContainer extends React.Component<any, any> {
+type Props = {
+};
+
+type State = {
+    globalActive: boolean,
+    time: number,
+    interval: NodeJS.Timer
+};
+
+class TotalTimerContainer extends React.Component<Props, State> {
     static getStores() {
         return [TotalTimerStore];
     }
@@ -23,7 +32,7 @@ class TotalTimerContainer extends React.Component<any, any> {
 
     public render(): JSX.Element {
         return (
-            <TotalTimer time={this.state.time}/>
+            <TotalTimer time={this.state.time} />
         );
     }
 

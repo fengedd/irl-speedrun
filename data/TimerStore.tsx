@@ -65,7 +65,6 @@ class TimerStore extends ReduceStore<any, any> {
     }
 
     public get getTimers(): Timer[] {
-        console.log('getTimers');
         return Array.from(this.getState().timers.values());
     }
 
@@ -146,6 +145,7 @@ class TimerStore extends ReduceStore<any, any> {
     private _timerIncrementTime(state: TimerStoreState, action) {
         const id = action.id;
         const timer = state.timers.get(id);
+        if (!timer) return state;
         timer.segmentTime++;
         return state;
     }
@@ -207,12 +207,11 @@ class TimerStore extends ReduceStore<any, any> {
     private _reset(state: TimerStoreState) {
         const timerMap: Map<String, Timer> = this._timerUpdateStats(state);
         AsyncStorage.setItem('timers', JSON.stringify(Array.from(timerMap.entries())));
-        console.log(JSON.stringify(Array.from(timerMap.entries())));
         return new TimerStoreState(timerMap, this.getView, -1);
     }
 
     private _timerUpdateStats(state: TimerStoreState): Map<String, Timer> {
-        const entries = Array.from(state.timers.entries()).map((entry: any) => {
+        const entries: any = Array.from(state.timers.entries()).map((entry: any) => {
             const key: String = entry[0];
             const timer: Timer = entry[1];
             const resultTimer: Timer = new Timer(timer.id, timer.expected);

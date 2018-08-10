@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { secondsToDisplayedTime } from '../misc/utility';
-import { DisplayedTime } from '../misc/types';
+
+type DisplayedTime = {
+    hours: number,
+    minutes: number,
+    seconds: number
+};
 
 type Props = {
     time: number
@@ -19,9 +24,9 @@ export default class TotalTimer extends React.Component<Props, State> {
             return {
                 displayedTime: newDisplayTime
             };
+        } else {
+            return null;
         }
-
-        return null;
     }
 
     constructor(props: Props) {
@@ -31,7 +36,7 @@ export default class TotalTimer extends React.Component<Props, State> {
             time: 0
         };
     }
-    render() {
+    public render() {
         return (
             <View style={styles.main} >
                 <Text style={styles.nameText}>

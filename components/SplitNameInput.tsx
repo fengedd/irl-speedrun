@@ -1,16 +1,14 @@
-import {
-    StyleSheet, View, TextInput
-} from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import React from 'react';
 
-type SplitNameInputProps = {
+type Props = {
     onChangeText: ((newText: string) => void),
     clearTextOnFocus: boolean,
     defaultValue: string
 };
 
-export default class SplitNameInput extends React.Component<any, any> {
-    constructor(props: SplitNameInputProps) {
+export default class SplitNameInput extends React.PureComponent<Props> {
+    constructor(props: Props) {
         super(props);
     }
 
@@ -20,7 +18,7 @@ export default class SplitNameInput extends React.Component<any, any> {
                 <TextInput
                     style={styles.nameText}
                     maxLength={14}
-                    onChangeText={(newText): string => this.props.onChangeText(newText)}
+                    onChangeText={(newText) => this.props.onChangeText(newText)}
                     clearTextOnFocus={this.props.clearTextOnFocus}
                     defaultValue={this.props.defaultValue}
                 />

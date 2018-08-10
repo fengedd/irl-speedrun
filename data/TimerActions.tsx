@@ -2,7 +2,7 @@ import TimerActionTypes from './TimerActionTypes';
 import Dispatcher from './Dispatcher';
 
 const TimerActions = {
-    
+
     currTimerIndexIncrement() {
         Dispatcher.dispatch({
             type: TimerActionTypes.CURR_TIMER_INDEX_INCREMENT

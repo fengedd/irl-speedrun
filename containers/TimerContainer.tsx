@@ -5,9 +5,13 @@ import TimerActions from '../data/TimerActions';
 import { Container } from 'flux/utils';
 import TotalTimerStore from '../data/TotalTimerStore';
 import { secondsToDisplayedTime } from '../misc/utility';
-import { DisplayedTime } from '../misc/types';
 import { ComparisonView } from '../misc/ViewTypes';
-import { __values } from '../node_modules/tslib';
+
+type DisplayedTime = {
+    hours: number,
+    minutes: number,
+    seconds: number
+};
 
 type Props = {
     segmentTime: number;
@@ -103,6 +107,7 @@ class TimerContainer extends React.Component<Props, State> {
 
     public delete = () => {
         TimerActions.timerDelete(this.props.id);
+        TimerActions.totalComparisonTimeSet();
     }
 
     public componentWillUnmount(): void {

@@ -2,15 +2,18 @@ import React from 'react';
 import SplitTimeInput from '../components/SplitTimeInput';
 import { timeToSeconds } from '../misc/utility';
 
-type SplitTimeInputContainerState = {
+type Props = {
+    expectedTimeCallback: (time: number) => void
 };
 
-type SplitTimeInputContainerProps = {
-
+type State = {
+    selectedHour: number,
+    selectedMinute: number,
+    selectedSecond: number,
 };
 
-export default class SplitTimeInputContainer extends React.Component<any, any> {
-    constructor(props: any) {
+export default class SplitTimeInputContainer extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -21,21 +24,21 @@ export default class SplitTimeInputContainer extends React.Component<any, any> {
 
     }
 
-    setHour(hour: number): void {
+    setHour = (hour: number) => {
         this.setState(() => ({
             selectedHour: hour
         }));
         this.props.expectedTimeCallback(timeToSeconds(hour, this.state.selectedMinute, this.state.selectedSecond));
     }
 
-    setMinute(minute: number): void {
+    setMinute = (minute: number) => {
         this.setState(() => ({
             selectedMinute: minute
         }));
         this.props.expectedTimeCallback(timeToSeconds(this.state.selectedHour, minute, this.state.selectedSecond));
     }
 
-    setSecond(sec: number): void {
+    setSecond = (sec: number) => {
         this.setState(() => ({
             selectedSecond: sec
         }));
@@ -48,9 +51,9 @@ export default class SplitTimeInputContainer extends React.Component<any, any> {
                 selectedHour={this.state.selectedHour}
                 selectedMinute={this.state.selectedMinute}
                 selectedSecond={this.state.selectedSecond}
-                callBackHour={this.setHour.bind(this)}
-                callBackMinute={this.setMinute.bind(this)}
-                callBackSecond={this.setSecond.bind(this)} />
+                callBackHour={this.setHour}
+                callBackMinute={this.setMinute}
+                callBackSecond={this.setSecond} />
         );
     }
 

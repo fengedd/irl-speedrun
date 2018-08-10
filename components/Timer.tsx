@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     StyleSheet, Text, View, TouchableOpacity,
-    Alert, TextStyle
+    TextStyle
 } from 'react-native';
 
 import { Icon } from 'react-native-material-ui';
@@ -70,13 +70,7 @@ export default class Timer extends React.PureComponent<any> {
     }
 
     private _renderDiffTimeStyle: () => TextStyle = () => {
-        // TODO
-        // const isGoldSplit = this.props.goldSplit;
         const isGreenSplit = this.props.greenSplit;
-        /*if (isGoldSplit) {
-            return styles.goldSplit;
-        } */
-
         if (isGreenSplit) {
             return styles.greenSplitText;
         } else {

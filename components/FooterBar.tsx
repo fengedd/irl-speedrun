@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, View, Platform } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { FooterBarView } from '../misc/ViewTypes';
 import { Button } from 'react-native-material-ui';
 
@@ -11,9 +11,9 @@ type Props = {
     view: FooterBarView
 };
 
-export default class FooterBar extends React.Component<Props> {
+export default class FooterBar extends React.PureComponent<Props> {
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
     }
 
@@ -31,7 +31,6 @@ export default class FooterBar extends React.Component<Props> {
 
     private _renderStartButtons(): JSX.Element {
         return (
-
             <Button style={{ container: styles.button }} raised={true} primary={true}
                 upperCase={true} icon={'directions-run'} text='Start' onPress={this.props.stopStart} />
         );

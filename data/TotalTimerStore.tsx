@@ -1,7 +1,5 @@
-import Immutable from 'immutable';
 import { ReduceStore } from 'flux/utils';
 import TotalTimerActionTypes from './TotalTimerActionTypes';
-import TotalTimerActions from './TotalTimerActions';
 import Dispatcher from './Dispatcher';
 import TotalTimer from './TotalTimer';
 
@@ -14,7 +12,7 @@ class TotalTimerStore extends ReduceStore<TotalTimer, any> {
         return new TotalTimer();
     }
 
-    reduce(state: TotalTimer, action): TotalTimer {
+    reduce(state: TotalTimer, action: any): TotalTimer {
         switch (action.type) {
             case TotalTimerActionTypes.PAUSE:
                 return this.pause(state, action);
@@ -37,19 +35,19 @@ class TotalTimerStore extends ReduceStore<TotalTimer, any> {
         return this.getState().time;
     }
 
-    private pause(state, action) {
+    private pause() {
         return new TotalTimer(this.getTime, false);
     }
 
-    private start(state, action) {
+    private start() {
         return new TotalTimer(this.getTime, true);
     }
 
-    private reset(state, action) {
+    private reset() {
         return new TotalTimer();
     }
 
-    private increment(state, action) {
+    private increment() {
         return new TotalTimer(this.getTime + 1, this.getGlobalActive);
     }
 }

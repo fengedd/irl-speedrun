@@ -1,26 +1,32 @@
 import * as React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
+import Timer from '../data/Timer';
 
-export default class TimerList extends React.PureComponent<any> {
-    constructor(props: any) {
+type Props = {
+    renderItem: (info: any) => JSX.Element,
+    data: Timer[],
+    keyExtractor: (item: any, index: number) => string
+};
+
+export default class TimerList extends React.PureComponent<Props> {
+    constructor(props: Props) {
         super(props);
     }
 
-    render() {
+    public render() {
         return (
             <View style={styles.container}>
                 <FlatList
                     renderItem={this.props.renderItem}
                     data={this.props.data}
                     keyExtractor={this.props.keyExtractor}
-                    extraData={this.props.extraData}
-                    ItemSeparatorComponent={this.renderSeparator}
+                    ItemSeparatorComponent={this._renderSeparator}
                 />
             </View>
         );
     }
 
-    renderSeparator = () => {
+    private _renderSeparator = () => {
         return (
             <View
                 style={styles.separator}

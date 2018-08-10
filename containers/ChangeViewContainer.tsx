@@ -1,30 +1,36 @@
 import TimerActions from '../data/TimerActions';
-
 import React from 'react';
 import TimerStore from '../data/TimerStore';
 import { Container } from 'flux/utils';
-
 import { TouchableOpacity, Text } from 'react-native';
+import { ComparisonView } from '../misc/ViewTypes';
 
-class ChangeViewContainer extends React.Component<any, any> {
+type Props = {
+};
+
+type State = {
+    view: ComparisonView
+};
+
+class ChangeViewContainer extends React.Component<Props, State> {
 
     static getStores() {
         return [TimerStore];
     }
 
-    static calculateState(prevState: any) {
+    static calculateState(prevState: State) {
         return {
-            view: TimerStore.getView
+            view: ComparisonView.expected
         };
     }
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
     }
 
     public render(): JSX.Element {
         return (
-            <TouchableOpacity onPress={() => {
+            <TouchableOpacity disabled={true} onPress={() => {
                 TimerActions.changeView();
                 TimerActions.totalComparisonTimeSet();
             }} >

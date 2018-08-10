@@ -1,7 +1,7 @@
 import TotalTimerActionTypes from './TotalTimerActionTypes';
 import Dispatcher from './Dispatcher';
 
-const TotalTimerActions: void = {
+const TotalTimerActions = {
     pause() {
         Dispatcher.dispatch({
             type: TotalTimerActionTypes.PAUSE

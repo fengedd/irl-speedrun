@@ -3,8 +3,15 @@ import TimerContainer from './TimerContainer';
 import TimerList from '../components/TimerList';
 import TimerStore from '../data/TimerStore';
 import { Container } from 'flux/utils';
+import Timer from '../data/Timer';
+type Props = {
+};
 
-class TimerListContainer extends React.Component<any, any> {
+type State = {
+    timers: Timer[]
+};
+
+class TimerListContainer extends React.Component<Props, State> {
     static getStores() {
         return [TimerStore];
     }

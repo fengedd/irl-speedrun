@@ -7,7 +7,6 @@ import TimerStore from '../data/TimerStore';
 import TimerActions from '../data/TimerActions';
 import { Container } from 'flux/utils';
 import { FooterBarView } from '../misc/ViewTypes';
-import { Alert } from '../node_modules/@types/react-native';
 
 type Props = {
     stopStart: () => void,
@@ -17,12 +16,19 @@ type Props = {
     view: () => void
 };
 
-class FooterBarContainer extends React.Component<any, any> {
+type State = {
+    globalActive: boolean,
+    currTimerIndex: number,
+    lengthOfTimers: number,
+    view: FooterBarView
+};
+
+class FooterBarContainer extends React.Component<Props, State> {
     static getStores() {
         return [TotalTimerStore, TimerStore];
     }
 
-    static calculateState(prevState: any) {
+    static calculateState(prevState: State) {
         return {
             globalActive: TotalTimerStore.getGlobalActive,
             currTimerIndex: TimerStore.getCurrIndex,
@@ -33,7 +39,7 @@ class FooterBarContainer extends React.Component<any, any> {
         };
     }
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
     }
 
@@ -58,7 +64,7 @@ class FooterBarContainer extends React.Component<any, any> {
 
     public stopStart = () => {
         const noTimers: boolean = this.state.lengthOfTimers <= 0;
-        if (noTimers) return; //Alert.alert('No timers!');
+        if (noTimers) return;
         const globalActive: boolean = this.state.globalActive;
         const isFirstStart: boolean = !globalActive && (this.state.currTimerIndex < 0);
         if (isFirstStart) {
